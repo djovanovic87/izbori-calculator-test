@@ -45,10 +45,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 import javax.swing.JSeparator;
 import javax.swing.JButton;
+
+import org.apache.derby.iapi.util.StringUtil;
 
 
 public class MainFrame extends JFrame {
@@ -128,25 +132,25 @@ public class MainFrame extends JFrame {
 	private JLabel lblBm_16;
 	private JLabel lblBm_17;
 	private JLabel lblBm_18;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField_8;
-	private JTextField textField_9;
-	private JTextField textField_10;
-	private JTextField textField_11;
-	private JTextField textField_12;
-	private JTextField textField_13;
-	private JTextField textField_14;
-	private JTextField textField_15;
-	private JTextField textField_16;
-	private JTextField textField_17;
-	private JTextField textField_18;
+	private JTextField tfBr1;
+	private JTextField tfBr2;
+	private JTextField tfBr3;
+	private JTextField tfBr4;
+	private JTextField tfBr5;
+	private JTextField tfBr6;
+	private JTextField tfBr7;
+	private JTextField tfBr8;
+	private JTextField tfBr9;
+	private JTextField tfBr10;
+	private JTextField tfBr11;
+	private JTextField tfBr12;
+	private JTextField tfBr13;
+	private JTextField tfBr14;
+	private JTextField tfBr15;
+	private JTextField tfBr16;
+	private JTextField tfBr17;
+	private JTextField tfBr18;
+	private JTextField tfBr19;
 	
 	Database database;
 	private JPanel panel_23;
@@ -169,6 +173,103 @@ public class MainFrame extends JFrame {
 				}
 			}
 		});
+	}
+	
+	public void obrisiPolja() {
+		brojBirackogMestaTF.setText("");
+		brGlasacaSaPrGlasaTF.setText("");
+		brojIzasloTF.setText("");
+		brojNevazecihTF.setText("");
+		lblBrojIzaslo.setText("0.00%");
+		lblBrojNevazecih.setText("0.00%");
+		lblBrojVazecih.setText("0.00%");
+		
+		tfBr1.setText("");
+		tfBr2.setText("");
+		tfBr3.setText("");
+		tfBr4.setText("");
+		tfBr5.setText("");
+		tfBr6.setText("");
+		tfBr7.setText("");
+		tfBr8.setText("");
+		tfBr9.setText("");
+		tfBr10.setText("");
+		tfBr11.setText("");
+		tfBr12.setText("");
+		tfBr13.setText("");
+		tfBr14.setText("");
+		tfBr15.setText("");
+		tfBr16.setText("");
+		tfBr17.setText("");
+		tfBr18.setText("");
+		tfBr19.setText("");
+	}
+	
+	public void izracunaj() {
+		int brojSaPravomGlasa = Integer.valueOf(brGlasacaSaPrGlasaTF.getText());
+		int brojIzaslih = Integer.valueOf(brojIzasloTF.getText());
+		int brojNevazecih = Integer.valueOf(brojNevazecihTF.getText());
+		double procIzaslo = brojIzaslih * 100.0 / brojSaPravomGlasa;
+		double procNevazecih = brojNevazecih * 100.0 / brojIzaslih;
+		double procVazecih = 100 - procNevazecih;
+		lblBrojIzaslo.setText(String.format("%." + String.valueOf(brojDecimala) + "f", procIzaslo) + "%");
+		lblBrojNevazecih.setText(String.format("%." + String.valueOf(brojDecimala) + "f", procNevazecih) + "%");
+		lblBrojVazecih.setText(String.format("%." + String.valueOf(brojDecimala) + "f", procVazecih) + "%");
+	}
+	
+	public Map<String, String> createMapFromValues() {
+		Map<String, String> map = new HashMap<String, String>();
+		
+		setZerosForEmpty();
+		map.put("id", brojBirackogMestaTF.getText());
+		map.put("broj_glasaca", brGlasacaSaPrGlasaTF.getText());
+		map.put("broj_izaslo", brojIzasloTF.getText());
+		map.put("broj_nevazecih", brojNevazecihTF.getText());
+		map.put("br1", tfBr1.getText());
+		map.put("br2", tfBr2.getText());
+		map.put("br3", tfBr3.getText());
+		map.put("br4", tfBr4.getText());
+		map.put("br5", tfBr5.getText());
+		map.put("br6", tfBr6.getText());
+		map.put("br7", tfBr7.getText());
+		map.put("br8", tfBr8.getText());
+		map.put("br9", tfBr9.getText());
+		map.put("br10", tfBr10.getText());
+		map.put("br11", tfBr11.getText());
+		map.put("br12", tfBr12.getText());
+		map.put("br13", tfBr13.getText());
+		map.put("br14", tfBr14.getText());
+		map.put("br15", tfBr15.getText());
+		map.put("br16", tfBr16.getText());
+		map.put("br17", tfBr17.getText());
+		map.put("br18", tfBr18.getText());
+		map.put("br19", tfBr19.getText());
+		return map;
+	}
+
+	private void setZerosForEmpty() {
+		if(brGlasacaSaPrGlasaTF.getText().equals("")) brGlasacaSaPrGlasaTF.setText("0");
+		if(brojIzasloTF.getText().equals("")) brojIzasloTF.setText("0");
+		if(brojNevazecihTF.getText().equals("")) brojNevazecihTF.setText("0");
+		if(tfBr1.getText().equals("")) tfBr1.setText("0");
+		if(tfBr2.getText().equals("")) tfBr2.setText("0");
+		if(tfBr3.getText().equals("")) tfBr3.setText("0");
+		if(tfBr4.getText().equals("")) tfBr4.setText("0");
+		if(tfBr5.getText().equals("")) tfBr5.setText("0");
+		if(tfBr6.getText().equals("")) tfBr6.setText("0");
+		if(tfBr7.getText().equals("")) tfBr7.setText("0");
+		if(tfBr8.getText().equals("")) tfBr8.setText("0");
+		if(tfBr9.getText().equals("")) tfBr9.setText("0");
+		if(tfBr10.getText().equals("")) tfBr10.setText("0");
+		if(tfBr11.getText().equals("")) tfBr11.setText("0");
+		if(tfBr12.getText().equals("")) tfBr12.setText("0");
+		if(tfBr13.getText().equals("")) tfBr13.setText("0");
+		if(tfBr14.getText().equals("")) tfBr14.setText("0");
+		if(tfBr15.getText().equals("")) tfBr15.setText("0");
+		if(tfBr16.getText().equals("")) tfBr16.setText("0");
+		if(tfBr17.getText().equals("")) tfBr17.setText("0");
+		if(tfBr18.getText().equals("")) tfBr18.setText("0");
+		if(tfBr19.getText().equals("")) tfBr19.setText("0");
 	}
 
 	/**
@@ -200,6 +301,7 @@ public class MainFrame extends JFrame {
 				int dec = Integer.valueOf(input);
 				if(dec >=0 && dec < 5) {
 					brojDecimala = dec;
+					izracunaj();
 				}
 			}
 		});
@@ -207,6 +309,14 @@ public class MainFrame extends JFrame {
 		
 		mntmIzlaz = new JMenuItem("Izlaz");
 		mnPodesavanja.add(mntmIzlaz);
+		mntmIzlaz.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -273,15 +383,16 @@ public class MainFrame extends JFrame {
 		panel_4.add(btnIzracunaj);
 		btnIzracunaj.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int brojSaPravomGlasa = Integer.valueOf(brGlasacaSaPrGlasaTF.getText());
-				int brojIzaslih = Integer.valueOf(brojIzasloTF.getText());
-				int brojNevazecih = Integer.valueOf(brojNevazecihTF.getText());
-				double procIzaslo = brojIzaslih * 100.0 / brojSaPravomGlasa;
-				double procNevazecih = brojNevazecih * 100.0 / brojIzaslih;
-				double procVazecih = 100 - procNevazecih;
-				lblBrojIzaslo.setText(String.format("%." + String.valueOf(brojDecimala) + "f", procIzaslo) + "%");
-				lblBrojNevazecih.setText(String.format("%." + String.valueOf(brojDecimala) + "f", procNevazecih) + "%");
-				lblBrojVazecih.setText(String.format("%." + String.valueOf(brojDecimala) + "f", procVazecih) + "%");
+				izracunaj();
+//				int brojSaPravomGlasa = Integer.valueOf(brGlasacaSaPrGlasaTF.getText());
+//				int brojIzaslih = Integer.valueOf(brojIzasloTF.getText());
+//				int brojNevazecih = Integer.valueOf(brojNevazecihTF.getText());
+//				double procIzaslo = brojIzaslih * 100.0 / brojSaPravomGlasa;
+//				double procNevazecih = brojNevazecih * 100.0 / brojIzaslih;
+//				double procVazecih = 100 - procNevazecih;
+//				lblBrojIzaslo.setText(String.format("%." + String.valueOf(brojDecimala) + "f", procIzaslo) + "%");
+//				lblBrojNevazecih.setText(String.format("%." + String.valueOf(brojDecimala) + "f", procNevazecih) + "%");
+//				lblBrojVazecih.setText(String.format("%." + String.valueOf(brojDecimala) + "f", procVazecih) + "%");
 			}
 		});
 		btnIzracunaj.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -292,14 +403,7 @@ public class MainFrame extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				brojBirackogMestaTF.setText("");
-				brGlasacaSaPrGlasaTF.setText("");
-				brojIzasloTF.setText("");
-				brojNevazecihTF.setText("");
-				lblBrojIzaslo.setText("0.00%");
-				lblBrojNevazecih.setText("0.00%");
-				lblBrojVazecih.setText("0.00%");
+				obrisiPolja();
 			}
 		});
 		
@@ -308,6 +412,30 @@ public class MainFrame extends JFrame {
 		
 		btnSacuvaj = new JButton("Sacuvaj");
 		panel_23.add(btnSacuvaj);
+		btnSacuvaj.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				int confirm = JOptionPane.showConfirmDialog(null, "Da li ste sigurni?", "Sacuvaj", JOptionPane.YES_NO_OPTION);
+				if(confirm == 0) {
+					Map<String, String> map = createMapFromValues();
+					if(!database.insert(map)) {
+						int confirmUpdate = JOptionPane.showConfirmDialog(null, "Unos za izborno mesto " + map.get("id") + " vec postoji. Ukoliko nastavite, podaci ce biti snimljeni preko postojecih.", "Sacuvaj", JOptionPane.YES_NO_OPTION);
+						if(confirmUpdate == 0) {
+							if(!database.update(map)){
+								JOptionPane.showMessageDialog(null, "Greska!");
+							} else {
+								JOptionPane.showMessageDialog(null, "Uspesno azurirano!");
+							}
+						}
+					} else {
+						JOptionPane.showMessageDialog(null, "Uspesno sacuvano!");
+						obrisiPolja();
+					}
+				}
+				
+			}
+		});
 		
 		btnUcitaj = new JButton("Ucitaj");
 		panel_23.add(btnUcitaj);
@@ -315,15 +443,42 @@ public class MainFrame extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				String input = JOptionPane.showInputDialog(null, "Unesite broj izbornog mesta", "Ucitaj", 1);
-				try {
-					ResultSet resultSet = database.select();
-					resultSet.next();
-					brojBirackogMestaTF.setText(String.valueOf(resultSet.getInt("id")));
-					brGlasacaSaPrGlasaTF.setText(String.valueOf(resultSet.getInt("broj_glasaca")));
-					brojIzasloTF.setText(String.valueOf(resultSet.getInt("broj_izaslo")));
-					brojNevazecihTF.setText(String.valueOf(resultSet.getInt("broj_nevazecih")));
-				} catch(SQLException e) {
+				
+				int confirm = JOptionPane.showConfirmDialog(null, "Da li ste sigurni? Trenutni unosi ce biti obrisani.", "Ucitaj", JOptionPane.YES_NO_OPTION);
+				
+				if(confirm == 0) {
+					String input = JOptionPane.showInputDialog(null, "Unesite broj izbornog mesta", "Ucitaj", 1);
+					try {
+						ResultSet resultSet = database.select(input);
+						resultSet.next();
+						brojBirackogMestaTF.setText(String.valueOf(resultSet.getInt("id")));
+						brGlasacaSaPrGlasaTF.setText(String.valueOf(resultSet.getInt("broj_glasaca")));
+						brojIzasloTF.setText(String.valueOf(resultSet.getInt("broj_izaslo")));
+						brojNevazecihTF.setText(String.valueOf(resultSet.getInt("broj_nevazecih")));
+						tfBr1.setText(String.valueOf(resultSet.getInt("br1")));
+						tfBr2.setText(String.valueOf(resultSet.getInt("br2")));
+						tfBr3.setText(String.valueOf(resultSet.getInt("br3")));
+						tfBr4.setText(String.valueOf(resultSet.getInt("br4")));
+						tfBr5.setText(String.valueOf(resultSet.getInt("br5")));
+						tfBr6.setText(String.valueOf(resultSet.getInt("br6")));
+						tfBr7.setText(String.valueOf(resultSet.getInt("br7")));
+						tfBr8.setText(String.valueOf(resultSet.getInt("br8")));
+						tfBr9.setText(String.valueOf(resultSet.getInt("br9")));
+						tfBr10.setText(String.valueOf(resultSet.getInt("br10")));
+						tfBr11.setText(String.valueOf(resultSet.getInt("br11")));
+						tfBr12.setText(String.valueOf(resultSet.getInt("br12")));
+						tfBr13.setText(String.valueOf(resultSet.getInt("br13")));
+						tfBr14.setText(String.valueOf(resultSet.getInt("br14")));
+						tfBr15.setText(String.valueOf(resultSet.getInt("br15")));
+						tfBr16.setText(String.valueOf(resultSet.getInt("br16")));
+						tfBr17.setText(String.valueOf(resultSet.getInt("br17")));
+						tfBr18.setText(String.valueOf(resultSet.getInt("br18")));
+						tfBr19.setText(String.valueOf(resultSet.getInt("br19")));
+						
+						izracunaj();
+					} catch(SQLException e) {
+						
+					}
 					
 				}
 			}
@@ -382,9 +537,9 @@ public class MainFrame extends JFrame {
 		lblBm = new JLabel("bm1");
 		panel_5.add(lblBm);
 		
-		textField = new JTextField();
-		panel_5.add(textField);
-		textField.setColumns(10);
+		tfBr1 = new JTextField();
+		panel_5.add(tfBr1);
+		tfBr1.setColumns(10);
 		
 		panel_6 = new JPanel();
 		FlowLayout flowLayout_1 = (FlowLayout) panel_6.getLayout();
@@ -394,9 +549,9 @@ public class MainFrame extends JFrame {
 		lblBm_1 = new JLabel("bm2");
 		panel_6.add(lblBm_1);
 		
-		textField_1 = new JTextField();
-		panel_6.add(textField_1);
-		textField_1.setColumns(10);
+		tfBr2 = new JTextField();
+		panel_6.add(tfBr2);
+		tfBr2.setColumns(10);
 		
 		panel_7 = new JPanel();
 		FlowLayout flowLayout_2 = (FlowLayout) panel_7.getLayout();
@@ -406,9 +561,9 @@ public class MainFrame extends JFrame {
 		lblBm_2 = new JLabel("bm3");
 		panel_7.add(lblBm_2);
 		
-		textField_2 = new JTextField();
-		panel_7.add(textField_2);
-		textField_2.setColumns(10);
+		tfBr3 = new JTextField();
+		panel_7.add(tfBr3);
+		tfBr3.setColumns(10);
 		
 		panel_3 = new JPanel();
 		FlowLayout flowLayout_3 = (FlowLayout) panel_3.getLayout();
@@ -418,9 +573,9 @@ public class MainFrame extends JFrame {
 		lblBm_3 = new JLabel("bm4");
 		panel_3.add(lblBm_3);
 		
-		textField_3 = new JTextField();
-		panel_3.add(textField_3);
-		textField_3.setColumns(10);
+		tfBr4 = new JTextField();
+		panel_3.add(tfBr4);
+		tfBr4.setColumns(10);
 		
 		panel_8 = new JPanel();
 		FlowLayout flowLayout_4 = (FlowLayout) panel_8.getLayout();
@@ -430,9 +585,9 @@ public class MainFrame extends JFrame {
 		lblBm_4 = new JLabel("bm5");
 		panel_8.add(lblBm_4);
 		
-		textField_4 = new JTextField();
-		panel_8.add(textField_4);
-		textField_4.setColumns(10);
+		tfBr5 = new JTextField();
+		panel_8.add(tfBr5);
+		tfBr5.setColumns(10);
 		
 		panel_9 = new JPanel();
 		FlowLayout flowLayout_5 = (FlowLayout) panel_9.getLayout();
@@ -442,9 +597,9 @@ public class MainFrame extends JFrame {
 		lblBm_5 = new JLabel("bm6");
 		panel_9.add(lblBm_5);
 		
-		textField_5 = new JTextField();
-		panel_9.add(textField_5);
-		textField_5.setColumns(10);
+		tfBr6 = new JTextField();
+		panel_9.add(tfBr6);
+		tfBr6.setColumns(10);
 		
 		panel_10 = new JPanel();
 		FlowLayout flowLayout_6 = (FlowLayout) panel_10.getLayout();
@@ -454,9 +609,9 @@ public class MainFrame extends JFrame {
 		lblBm_6 = new JLabel("bm7");
 		panel_10.add(lblBm_6);
 		
-		textField_6 = new JTextField();
-		panel_10.add(textField_6);
-		textField_6.setColumns(10);
+		tfBr7 = new JTextField();
+		panel_10.add(tfBr7);
+		tfBr7.setColumns(10);
 		
 		panel_11 = new JPanel();
 		FlowLayout flowLayout_7 = (FlowLayout) panel_11.getLayout();
@@ -466,9 +621,9 @@ public class MainFrame extends JFrame {
 		lblBm_7 = new JLabel("bm8");
 		panel_11.add(lblBm_7);
 		
-		textField_7 = new JTextField();
-		panel_11.add(textField_7);
-		textField_7.setColumns(10);
+		tfBr8 = new JTextField();
+		panel_11.add(tfBr8);
+		tfBr8.setColumns(10);
 		
 		panel_12 = new JPanel();
 		FlowLayout flowLayout_8 = (FlowLayout) panel_12.getLayout();
@@ -478,9 +633,9 @@ public class MainFrame extends JFrame {
 		lblBm_8 = new JLabel("bm9");
 		panel_12.add(lblBm_8);
 		
-		textField_8 = new JTextField();
-		panel_12.add(textField_8);
-		textField_8.setColumns(10);
+		tfBr9 = new JTextField();
+		panel_12.add(tfBr9);
+		tfBr9.setColumns(10);
 		
 		panel_13 = new JPanel();
 		FlowLayout flowLayout_9 = (FlowLayout) panel_13.getLayout();
@@ -490,9 +645,9 @@ public class MainFrame extends JFrame {
 		lblBm_9 = new JLabel("bm10");
 		panel_13.add(lblBm_9);
 		
-		textField_9 = new JTextField();
-		panel_13.add(textField_9);
-		textField_9.setColumns(10);
+		tfBr10 = new JTextField();
+		panel_13.add(tfBr10);
+		tfBr10.setColumns(10);
 		
 		panel_14 = new JPanel();
 		FlowLayout flowLayout_10 = (FlowLayout) panel_14.getLayout();
@@ -502,9 +657,9 @@ public class MainFrame extends JFrame {
 		lblBm_10 = new JLabel("bm11");
 		panel_14.add(lblBm_10);
 		
-		textField_10 = new JTextField();
-		panel_14.add(textField_10);
-		textField_10.setColumns(10);
+		tfBr11 = new JTextField();
+		panel_14.add(tfBr11);
+		tfBr11.setColumns(10);
 		
 		panel_15 = new JPanel();
 		FlowLayout flowLayout_11 = (FlowLayout) panel_15.getLayout();
@@ -514,9 +669,9 @@ public class MainFrame extends JFrame {
 		lblBm_11 = new JLabel("bm12");
 		panel_15.add(lblBm_11);
 		
-		textField_11 = new JTextField();
-		panel_15.add(textField_11);
-		textField_11.setColumns(10);
+		tfBr12 = new JTextField();
+		panel_15.add(tfBr12);
+		tfBr12.setColumns(10);
 		
 		panel_16 = new JPanel();
 		FlowLayout flowLayout_12 = (FlowLayout) panel_16.getLayout();
@@ -526,9 +681,9 @@ public class MainFrame extends JFrame {
 		lblBm_12 = new JLabel("bm13");
 		panel_16.add(lblBm_12);
 		
-		textField_12 = new JTextField();
-		panel_16.add(textField_12);
-		textField_12.setColumns(10);
+		tfBr13 = new JTextField();
+		panel_16.add(tfBr13);
+		tfBr13.setColumns(10);
 		
 		panel_17 = new JPanel();
 		FlowLayout flowLayout_13 = (FlowLayout) panel_17.getLayout();
@@ -538,9 +693,9 @@ public class MainFrame extends JFrame {
 		lblBm_13 = new JLabel("bm14");
 		panel_17.add(lblBm_13);
 		
-		textField_13 = new JTextField();
-		panel_17.add(textField_13);
-		textField_13.setColumns(10);
+		tfBr14 = new JTextField();
+		panel_17.add(tfBr14);
+		tfBr14.setColumns(10);
 		
 		panel_18 = new JPanel();
 		FlowLayout flowLayout_14 = (FlowLayout) panel_18.getLayout();
@@ -550,9 +705,9 @@ public class MainFrame extends JFrame {
 		lblBm_14 = new JLabel("bm15");
 		panel_18.add(lblBm_14);
 		
-		textField_14 = new JTextField();
-		panel_18.add(textField_14);
-		textField_14.setColumns(10);
+		tfBr15 = new JTextField();
+		panel_18.add(tfBr15);
+		tfBr15.setColumns(10);
 		
 		panel_19 = new JPanel();
 		FlowLayout flowLayout_15 = (FlowLayout) panel_19.getLayout();
@@ -562,9 +717,9 @@ public class MainFrame extends JFrame {
 		lblBm_15 = new JLabel("bm16");
 		panel_19.add(lblBm_15);
 		
-		textField_15 = new JTextField();
-		panel_19.add(textField_15);
-		textField_15.setColumns(10);
+		tfBr16 = new JTextField();
+		panel_19.add(tfBr16);
+		tfBr16.setColumns(10);
 		
 		panel_20 = new JPanel();
 		FlowLayout flowLayout_16 = (FlowLayout) panel_20.getLayout();
@@ -574,9 +729,9 @@ public class MainFrame extends JFrame {
 		lblBm_16 = new JLabel("bm17");
 		panel_20.add(lblBm_16);
 		
-		textField_16 = new JTextField();
-		panel_20.add(textField_16);
-		textField_16.setColumns(10);
+		tfBr17 = new JTextField();
+		panel_20.add(tfBr17);
+		tfBr17.setColumns(10);
 		
 		panel_21 = new JPanel();
 		FlowLayout flowLayout_17 = (FlowLayout) panel_21.getLayout();
@@ -586,9 +741,9 @@ public class MainFrame extends JFrame {
 		lblBm_17 = new JLabel("bm18");
 		panel_21.add(lblBm_17);
 		
-		textField_17 = new JTextField();
-		panel_21.add(textField_17);
-		textField_17.setColumns(10);
+		tfBr18 = new JTextField();
+		panel_21.add(tfBr18);
+		tfBr18.setColumns(10);
 		
 		panel_22 = new JPanel();
 		FlowLayout flowLayout_18 = (FlowLayout) panel_22.getLayout();
@@ -598,9 +753,9 @@ public class MainFrame extends JFrame {
 		lblBm_18 = new JLabel("bm19");
 		panel_22.add(lblBm_18);
 		
-		textField_18 = new JTextField();
-		panel_22.add(textField_18);
-		textField_18.setColumns(10);
+		tfBr19 = new JTextField();
+		panel_22.add(tfBr19);
+		tfBr19.setColumns(10);
 	}
 	
 	
