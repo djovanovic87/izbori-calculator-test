@@ -19,6 +19,7 @@ public class Database {
     ArrayList statements = new ArrayList(); 
     PreparedStatement psInsert = null;
     PreparedStatement psUpdate = null;
+    PreparedStatement psCreate = null;
     Statement s = null;
     ResultSet rs = null;
     Properties props = new Properties();
@@ -126,4 +127,68 @@ public class Database {
 		}
 	}
 	
+	public ResultSet selectAllData() {
+		try {
+			return s.executeQuery("SELECT * FROM main_table");
+		} catch (SQLException e) {
+			return null;
+		}
+	}
+	
+	public ResultSet selectAllNames() {
+		try {
+			return s.executeQuery("SELECT * FROM table_names");
+		} catch (SQLException e) {
+			return null;
+		}
+	}
+	
+	public ResultSet totalRowsCount() {
+		try {
+			return s.executeQuery("SELECT count(id) from table_name");
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public void createTable() {
+		try {
+			psCreate = conn.prepareStatement("create table table_names(id int not null, name varchar(60), PRIMARY KEY(id))");
+			statements.add(psCreate);
+			psCreate.executeUpdate();
+			conn.commit();
+			System.out.println("Successfully created table table_names");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void insertNames() {
+		
+		try {
+			psInsert = conn.prepareStatement("insert into table_names values(19, 'Izborna lista 19')");
+			statements.add(psInsert);
+			psInsert.executeUpdate();
+			conn.commit();
+			System.out.println("Successfully inserted");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public void updateName(String id, String name) {
+		try {
+			psUpdate = conn.prepareStatement("update table_names set name='" + name + "' where id=" +id);
+			statements.add(psUpdate);
+			psUpdate.executeUpdate();
+			conn.commit();
+			System.out.println("Successfully updated name for id " + id);
+		} catch (NumberFormatException | SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }
