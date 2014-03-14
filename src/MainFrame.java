@@ -1,60 +1,32 @@
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-
-import java.awt.FlowLayout;
-
-import javax.swing.JTextField;
-import javax.swing.BoxLayout;
-
-import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import java.awt.Toolkit;
-
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.factories.FormFactory;
-import com.jgoodies.forms.layout.RowSpec;
-
-import net.miginfocom.swing.MigLayout;
-
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.EventQueue;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-
-import java.awt.Color;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
 
-import javax.swing.JSeparator;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
-
-import org.apache.derby.iapi.util.StringUtil;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JSeparator;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import java.awt.Font;
+import javax.swing.border.EmptyBorder;
 
 
 public class MainFrame extends JFrame {
@@ -154,6 +126,9 @@ public class MainFrame extends JFrame {
 	private JTextField tfBr18;
 	private JTextField tfBr19;
 	
+	JDialog jDialog;
+	JPanel dialogPanel;
+	
 	Database database;
 	private JPanel panel_23;
 	private JButton btnUcitaj;
@@ -249,6 +224,26 @@ public class MainFrame extends JFrame {
 		tfBr17.setText("");
 		tfBr18.setText("");
 		tfBr19.setText("");
+		
+		lblL1perc.setText("");
+		lblL2perc.setText("");
+		lblL3perc.setText("");
+		lblL4perc.setText("");
+		lblL5perc.setText("");
+		lblL6perc.setText("");
+		lblL7perc.setText("");
+		lblL8perc.setText("");
+		lblL9perc.setText("");
+		lblL10perc.setText("");
+		lblL11perc.setText("");
+		lblL12perc.setText("");
+		lblL13perc.setText("");
+		lblL14perc.setText("");
+		lblL15perc.setText("");
+		lblL16perc.setText("");
+		lblL17perc.setText("");
+		lblL18perc.setText("");
+		lblL19perc.setText("");
 	}
 	
 	public void izracunaj() {
@@ -484,6 +479,86 @@ public class MainFrame extends JFrame {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				
+				int vazecih = izaslo - nevazecih;
+				double izasloProc = izaslo * 100.0 / saPravomGlasa;
+				double nevazecihProc = nevazecih * 100.0 / izaslo;
+				double vazecihProc = 100.0 - nevazecihProc;
+				double il1 = br1 * 100.0 / vazecih;
+				double il2 = br2 * 100.0 / vazecih;
+				double il3 = br3 * 100.0 / vazecih;
+				double il4 = br4 * 100.0 / vazecih;
+				double il5 = br5 * 100.0 / vazecih;
+				double il6 = br6 * 100.0 / vazecih;
+				double il7 = br7 * 100.0 / vazecih;
+				double il8 = br8 * 100.0 / vazecih;
+				double il9 = br9 * 100.0 / vazecih;
+				double il10 = br10 * 100.0 / vazecih;
+				double il11 = br11 * 100.0 / vazecih;
+				double il12 = br12 * 100.0 / vazecih;
+				double il13 = br13 * 100.0 / vazecih;
+				double il14 = br14 * 100.0 / vazecih;
+				double il15 = br15 * 100.0 / vazecih;
+				double il16 = br16 * 100.0 / vazecih;
+				double il17 = br17 * 100.0 / vazecih;
+				double il18 = br18 * 100.0 / vazecih;
+				double il19 = br19 * 100.0 / vazecih;
+				
+				jDialog = new JDialog();
+				jDialog.setTitle("Rezultati glasanja");
+				
+				JButton button = new JButton("Zatvori");
+				button.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+						jDialog.setVisible(false);
+					}
+				});
+				
+				jDialog.setSize(400, 700);
+				
+				Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+				jDialog.setLocation(dim.width/2-400/2, dim.height/2-700/2);
+				dialogPanel = new JPanel();
+				dialogPanel.setLayout(new BoxLayout(dialogPanel, BoxLayout.Y_AXIS));
+				dialogPanel.setAlignmentX( Component.CENTER_ALIGNMENT );
+				
+				dialogPanel.add(new JLabel("Rezultati glasanja sa " + String.valueOf(brojac) + " izbornih mesta br: " +izborneListe));
+				dialogPanel.add(new JLabel("Broj glasaca sa pravom glasa: " + String.valueOf(saPravomGlasa)));
+				dialogPanel.add(new JLabel("Broj glasaca izaslo: " + String.valueOf(izaslo) + " - " + String.format("%." + String.valueOf(brojDecimala) + "f", izasloProc) + "%"));
+				dialogPanel.add(new JLabel("Broj nevazecih listica: " + String.valueOf(nevazecih) + " - " + String.format("%." + String.valueOf(brojDecimala) + "f", nevazecihProc) + "%"));
+				dialogPanel.add(new JLabel("Broj vazecih listica: " + String.valueOf(vazecih) + " - " + String.format("%." + String.valueOf(brojDecimala) + "f", vazecihProc) + "%"));
+				
+//				String.format("%." + String.valueOf(brojDecimala) + "f", l1proc)
+				
+				dialogPanel.add(new JLabel("Broj glasova za izbornu listu " + lblIL1.getText() + ": " + String.valueOf(br1) + " - " + String.format("%." + String.valueOf(brojDecimala) + "f", il1) + "%"));
+				dialogPanel.add(new JLabel("Broj glasova za izbornu listu " + lblIL2.getText() + ": " + String.valueOf(br2) + " - " + String.format("%." + String.valueOf(brojDecimala) + "f", il2) + "%"));
+				dialogPanel.add(new JLabel("Broj glasova za izbornu listu " + lblIL3.getText() + ": " + String.valueOf(br3) + " - " + String.format("%." + String.valueOf(brojDecimala) + "f", il3) + "%"));
+				dialogPanel.add(new JLabel("Broj glasova za izbornu listu " + lblIL4.getText() + ": " + String.valueOf(br4) + " - " + String.format("%." + String.valueOf(brojDecimala) + "f", il4) + "%"));
+				dialogPanel.add(new JLabel("Broj glasova za izbornu listu " + lblIL5.getText() + ": " + String.valueOf(br5) + " - " + String.format("%." + String.valueOf(brojDecimala) + "f", il5) + "%"));
+				dialogPanel.add(new JLabel("Broj glasova za izbornu listu " + lblIL6.getText() + ": " + String.valueOf(br6) + " - " + String.format("%." + String.valueOf(brojDecimala) + "f", il6) + "%"));
+				dialogPanel.add(new JLabel("Broj glasova za izbornu listu " + lblIL7.getText() + ": " + String.valueOf(br7) + " - " + String.format("%." + String.valueOf(brojDecimala) + "f", il7) + "%"));
+				dialogPanel.add(new JLabel("Broj glasova za izbornu listu " + lblIL8.getText() + ": " + String.valueOf(br8) + " - " + String.format("%." + String.valueOf(brojDecimala) + "f", il8) + "%"));
+				dialogPanel.add(new JLabel("Broj glasova za izbornu listu " + lblIL9.getText() + ": " + String.valueOf(br9) + " - " + String.format("%." + String.valueOf(brojDecimala) + "f", il9) + "%"));
+				dialogPanel.add(new JLabel("Broj glasova za izbornu listu " + lblIL10.getText() + ": " + String.valueOf(br10) + " - " + String.format("%." + String.valueOf(brojDecimala) + "f", il10) + "%"));
+				dialogPanel.add(new JLabel("Broj glasova za izbornu listu " + lblIL11.getText() + ": " + String.valueOf(br11) + " - " + String.format("%." + String.valueOf(brojDecimala) + "f", il11) + "%"));
+				dialogPanel.add(new JLabel("Broj glasova za izbornu listu " + lblIL12.getText() + ": " + String.valueOf(br12) + " - " + String.format("%." + String.valueOf(brojDecimala) + "f", il12) + "%"));
+				dialogPanel.add(new JLabel("Broj glasova za izbornu listu " + lblIL13.getText() + ": " + String.valueOf(br13) + " - " + String.format("%." + String.valueOf(brojDecimala) + "f", il13) + "%"));
+				dialogPanel.add(new JLabel("Broj glasova za izbornu listu " + lblIL14.getText() + ": " + String.valueOf(br14) + " - " + String.format("%." + String.valueOf(brojDecimala) + "f", il14) + "%"));
+				dialogPanel.add(new JLabel("Broj glasova za izbornu listu " + lblIL15.getText() + ": " + String.valueOf(br15) + " - " + String.format("%." + String.valueOf(brojDecimala) + "f", il15) + "%"));
+				dialogPanel.add(new JLabel("Broj glasova za izbornu listu " + lblIL16.getText() + ": " + String.valueOf(br16) + " - " + String.format("%." + String.valueOf(brojDecimala) + "f", il16) + "%"));
+				dialogPanel.add(new JLabel("Broj glasova za izbornu listu " + lblIL17.getText() + ": " + String.valueOf(br17) + " - " + String.format("%." + String.valueOf(brojDecimala) + "f", il17) + "%"));
+				dialogPanel.add(new JLabel("Broj glasova za izbornu listu " + lblIL18.getText() + ": " + String.valueOf(br18) + " - " + String.format("%." + String.valueOf(brojDecimala) + "f", il18) + "%"));
+				dialogPanel.add(new JLabel("Broj glasova za izbornu listu " + lblIL19.getText() + ": " + String.valueOf(br19) + " - " + String.format("%." + String.valueOf(brojDecimala) + "f", il19) + "%"));
+				
+				dialogPanel.add(button);
+				
+				jDialog.add(dialogPanel);
+				
+				jDialog.setVisible(true);
+				
+				
 				
 			}
 		});
