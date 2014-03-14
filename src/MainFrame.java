@@ -181,6 +181,27 @@ public class MainFrame extends JFrame {
 	private JLabel lblBrojVazecihListica;
 	private JLabel lblBrVazecihListica;
 	private JSeparator separator_3;
+	private JLabel lblL1perc;
+	private JLabel lblL2perc;
+	private JLabel lblL3perc;
+	private JLabel lblL4perc;
+	private JLabel lblL5perc;
+	private JLabel lblL6perc;
+	private JLabel lblL7perc;
+	private JLabel lblL8perc;
+	private JLabel lblL9perc;
+	private JLabel lblL10perc;
+	private JLabel lblL11perc;
+	private JLabel lblL12perc;
+	private JLabel lblL13perc;
+	private JLabel lblL14perc;
+	private JLabel lblL15perc;
+	private JLabel lblL16perc;
+	private JLabel lblL17perc;
+	private JLabel lblL18perc;
+	private JLabel lblL19perc;
+	private JMenuItem mntmIzracunajSve;
+	private JSeparator separator_4;
 
 	/**
 	 * Launch the application.
@@ -238,10 +259,73 @@ public class MainFrame extends JFrame {
 		double procIzaslo = brojIzaslih * 100.0 / brojSaPravomGlasa;
 		double procNevazecih = brojNevazecih * 100.0 / brojIzaslih;
 		double procVazecih = 100 - procNevazecih;
+		
+		if(tfBr1.getText().equals("")) tfBr1.setText("0");
+		if(tfBr2.getText().equals("")) tfBr2.setText("0");
+		if(tfBr3.getText().equals("")) tfBr3.setText("0");
+		if(tfBr4.getText().equals("")) tfBr4.setText("0");
+		if(tfBr5.getText().equals("")) tfBr5.setText("0");
+		if(tfBr6.getText().equals("")) tfBr6.setText("0");
+		if(tfBr7.getText().equals("")) tfBr7.setText("0");
+		if(tfBr8.getText().equals("")) tfBr8.setText("0");
+		if(tfBr9.getText().equals("")) tfBr9.setText("0");
+		if(tfBr10.getText().equals("")) tfBr10.setText("0");
+		if(tfBr11.getText().equals("")) tfBr11.setText("0");
+		if(tfBr12.getText().equals("")) tfBr12.setText("0");
+		if(tfBr13.getText().equals("")) tfBr13.setText("0");
+		if(tfBr14.getText().equals("")) tfBr14.setText("0");
+		if(tfBr15.getText().equals("")) tfBr15.setText("0");
+		if(tfBr16.getText().equals("")) tfBr16.setText("0");
+		if(tfBr17.getText().equals("")) tfBr17.setText("0");
+		if(tfBr18.getText().equals("")) tfBr18.setText("0");
+		if(tfBr19.getText().equals("")) tfBr19.setText("0");
+		
+		double l1proc = Integer.valueOf(tfBr1.getText()) * 100.0 / brojVazecih;
+		double l2proc = Integer.valueOf(tfBr2.getText()) * 100.0 / brojVazecih;
+		double l3proc = Integer.valueOf(tfBr3.getText()) * 100.0 / brojVazecih;
+		double l4proc = Integer.valueOf(tfBr4.getText()) * 100.0 / brojVazecih;
+		double l5proc = Integer.valueOf(tfBr5.getText()) * 100.0 / brojVazecih;
+		double l6proc = Integer.valueOf(tfBr6.getText()) * 100.0 / brojVazecih;
+		double l7proc = Integer.valueOf(tfBr7.getText()) * 100.0 / brojVazecih;
+		double l8proc = Integer.valueOf(tfBr8.getText()) * 100.0 / brojVazecih;
+		double l9proc = Integer.valueOf(tfBr9.getText()) * 100.0 / brojVazecih;
+		double l10proc = Integer.valueOf(tfBr10.getText()) * 100.0 / brojVazecih;
+		double l11proc = Integer.valueOf(tfBr11.getText()) * 100.0 / brojVazecih;
+		double l12proc = Integer.valueOf(tfBr12.getText()) * 100.0 / brojVazecih;
+		double l13proc = Integer.valueOf(tfBr13.getText()) * 100.0 / brojVazecih;
+		double l14proc = Integer.valueOf(tfBr14.getText()) * 100.0 / brojVazecih;
+		double l15proc = Integer.valueOf(tfBr15.getText()) * 100.0 / brojVazecih;
+		double l16proc = Integer.valueOf(tfBr16.getText()) * 100.0 / brojVazecih;
+		double l17proc = Integer.valueOf(tfBr17.getText()) * 100.0 / brojVazecih;
+		double l18proc = Integer.valueOf(tfBr18.getText()) * 100.0 / brojVazecih;
+		double l19proc = Integer.valueOf(tfBr19.getText()) * 100.0 / brojVazecih;
+		
+		lblL1perc.setText(String.format("%." + String.valueOf(brojDecimala) + "f", l1proc) + "%");
+		lblL2perc.setText(String.format("%." + String.valueOf(brojDecimala) + "f", l2proc) + "%");
+		lblL3perc.setText(String.format("%." + String.valueOf(brojDecimala) + "f", l3proc) + "%");
+		lblL4perc.setText(String.format("%." + String.valueOf(brojDecimala) + "f", l4proc) + "%");
+		lblL5perc.setText(String.format("%." + String.valueOf(brojDecimala) + "f", l5proc) + "%");
+		lblL6perc.setText(String.format("%." + String.valueOf(brojDecimala) + "f", l6proc) + "%");
+		lblL7perc.setText(String.format("%." + String.valueOf(brojDecimala) + "f", l7proc) + "%");
+		lblL8perc.setText(String.format("%." + String.valueOf(brojDecimala) + "f", l8proc) + "%");
+		lblL9perc.setText(String.format("%." + String.valueOf(brojDecimala) + "f", l9proc) + "%");
+		lblL10perc.setText(String.format("%." + String.valueOf(brojDecimala) + "f", l10proc) + "%");
+		lblL11perc.setText(String.format("%." + String.valueOf(brojDecimala) + "f", l11proc) + "%");
+		lblL12perc.setText(String.format("%." + String.valueOf(brojDecimala) + "f", l12proc) + "%");
+		lblL13perc.setText(String.format("%." + String.valueOf(brojDecimala) + "f", l13proc) + "%");
+		lblL14perc.setText(String.format("%." + String.valueOf(brojDecimala) + "f", l14proc) + "%");
+		lblL15perc.setText(String.format("%." + String.valueOf(brojDecimala) + "f", l15proc) + "%");
+		lblL16perc.setText(String.format("%." + String.valueOf(brojDecimala) + "f", l16proc) + "%");
+		lblL17perc.setText(String.format("%." + String.valueOf(brojDecimala) + "f", l17proc) + "%");
+		lblL18perc.setText(String.format("%." + String.valueOf(brojDecimala) + "f", l18proc) + "%");
+		lblL19perc.setText(String.format("%." + String.valueOf(brojDecimala) + "f", l19proc) + "%");
+		
 		lblBrojIzaslo.setText(String.format("%." + String.valueOf(brojDecimala) + "f", procIzaslo) + "%");
 		lblBrojNevazecih.setText(String.format("%." + String.valueOf(brojDecimala) + "f", procNevazecih) + "%");
 		lblBrojVazecih.setText(String.format("%." + String.valueOf(brojDecimala) + "f", procVazecih) + "%");
 		lblBrVazecihListica.setText(String.valueOf(brojVazecih));
+		
+		
 	}
 	
 	public Map<String, String> createMapFromValues() {
@@ -334,6 +418,79 @@ public class MainFrame extends JFrame {
 				}
 			}
 		});
+		
+		mntmIzracunajSve = new JMenuItem("Izracunaj sve");
+		mntmIzracunajSve.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				
+				ResultSet resultSet = database.selectAllData();
+				
+				String izborneListe = "";
+				int saPravomGlasa = 0;
+				int izaslo = 0;
+				int nevazecih = 0;
+				int br1 = 0;
+				int br2 = 0;
+				int br3 = 0;
+				int br4 = 0;
+				int br5 = 0;
+				int br6 = 0;
+				int br7 = 0;
+				int br8 = 0;
+				int br9 = 0;
+				int br10 = 0;
+				int br11 = 0;
+				int br12 = 0;
+				int br13 = 0;
+				int br14 = 0;
+				int br15 = 0;
+				int br16 = 0;
+				int br17 = 0;
+				int br18 = 0;
+				int br19 = 0;
+				
+				int brojac = 0;
+				try {
+					while(resultSet.next()) {
+						brojac++;
+						izborneListe += String.valueOf(resultSet.getInt("id")) + ", ";
+						saPravomGlasa += resultSet.getInt("broj_glasaca");
+						izaslo += resultSet.getInt("broj_izaslo");
+						nevazecih += resultSet.getInt("broj_nevazecih");
+						br1 += resultSet.getInt("br1");
+						br2 += resultSet.getInt("br2");
+						br3 += resultSet.getInt("br3");
+						br4 += resultSet.getInt("br4");
+						br5 += resultSet.getInt("br5");
+						br6 += resultSet.getInt("br6");
+						br7 += resultSet.getInt("br7");
+						br8 += resultSet.getInt("br8");
+						br9 += resultSet.getInt("br9");
+						br10 += resultSet.getInt("br10");
+						br11 += resultSet.getInt("br11");
+						br12 += resultSet.getInt("br12");
+						br13 += resultSet.getInt("br13");
+						br14 += resultSet.getInt("br14");
+						br15 += resultSet.getInt("br15");
+						br16 += resultSet.getInt("br16");
+						br17 += resultSet.getInt("br17");
+						br18 += resultSet.getInt("br18");
+						br19 += resultSet.getInt("br19");
+						
+					}
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}
+		});
+		mnPodesavanja.add(mntmIzracunajSve);
+		
+		separator_4 = new JSeparator();
+		mnPodesavanja.add(separator_4);
 		mnPodesavanja.add(mntmBrojDecimala);
 		
 		mntmIzlaz = new JMenuItem("Izlaz");
@@ -595,6 +752,10 @@ public class MainFrame extends JFrame {
 		panel_5.add(tfBr1);
 		tfBr1.setColumns(10);
 		
+		lblL1perc = new JLabel("0.00%");
+		lblL1perc.setForeground(Color.red);
+		panel_5.add(lblL1perc);
+		
 		panel_6 = new JPanel();
 		FlowLayout flowLayout_1 = (FlowLayout) panel_6.getLayout();
 		flowLayout_1.setAlignment(FlowLayout.RIGHT);
@@ -616,6 +777,10 @@ public class MainFrame extends JFrame {
 		tfBr2 = new JTextField();
 		panel_6.add(tfBr2);
 		tfBr2.setColumns(10);
+		
+		lblL2perc = new JLabel("0.00%");
+		lblL2perc.setForeground(Color.red);
+		panel_6.add(lblL2perc);
 		
 		panel_7 = new JPanel();
 		FlowLayout flowLayout_2 = (FlowLayout) panel_7.getLayout();
@@ -639,6 +804,10 @@ public class MainFrame extends JFrame {
 		panel_7.add(tfBr3);
 		tfBr3.setColumns(10);
 		
+		lblL3perc = new JLabel("0.00%");
+		lblL3perc.setForeground(Color.red);
+		panel_7.add(lblL3perc);
+		
 		panel_3 = new JPanel();
 		FlowLayout flowLayout_3 = (FlowLayout) panel_3.getLayout();
 		flowLayout_3.setAlignment(FlowLayout.RIGHT);
@@ -660,6 +829,10 @@ public class MainFrame extends JFrame {
 		tfBr4 = new JTextField();
 		panel_3.add(tfBr4);
 		tfBr4.setColumns(10);
+		
+		lblL4perc = new JLabel("0.00%");
+		lblL4perc.setForeground(Color.red);
+		panel_3.add(lblL4perc);
 		
 		panel_8 = new JPanel();
 		FlowLayout flowLayout_4 = (FlowLayout) panel_8.getLayout();
@@ -683,6 +856,10 @@ public class MainFrame extends JFrame {
 		panel_8.add(tfBr5);
 		tfBr5.setColumns(10);
 		
+		lblL5perc = new JLabel("0.00%");
+		lblL5perc.setForeground(Color.red);
+		panel_8.add(lblL5perc);
+		
 		panel_9 = new JPanel();
 		FlowLayout flowLayout_5 = (FlowLayout) panel_9.getLayout();
 		flowLayout_5.setAlignment(FlowLayout.RIGHT);
@@ -704,6 +881,10 @@ public class MainFrame extends JFrame {
 		tfBr6 = new JTextField();
 		panel_9.add(tfBr6);
 		tfBr6.setColumns(10);
+		
+		lblL6perc = new JLabel("0.00%");
+		lblL6perc.setForeground(Color.red);
+		panel_9.add(lblL6perc);
 		
 		panel_10 = new JPanel();
 		FlowLayout flowLayout_6 = (FlowLayout) panel_10.getLayout();
@@ -727,6 +908,10 @@ public class MainFrame extends JFrame {
 		panel_10.add(tfBr7);
 		tfBr7.setColumns(10);
 		
+		lblL7perc = new JLabel("0.00%");
+		lblL7perc.setForeground(Color.red);
+		panel_10.add(lblL7perc);
+		
 		panel_11 = new JPanel();
 		FlowLayout flowLayout_7 = (FlowLayout) panel_11.getLayout();
 		flowLayout_7.setAlignment(FlowLayout.RIGHT);
@@ -748,6 +933,10 @@ public class MainFrame extends JFrame {
 		tfBr8 = new JTextField();
 		panel_11.add(tfBr8);
 		tfBr8.setColumns(10);
+		
+		lblL8perc = new JLabel("0.00%");
+		lblL8perc.setForeground(Color.red);
+		panel_11.add(lblL8perc);
 		
 		panel_12 = new JPanel();
 		FlowLayout flowLayout_8 = (FlowLayout) panel_12.getLayout();
@@ -771,6 +960,10 @@ public class MainFrame extends JFrame {
 		panel_12.add(tfBr9);
 		tfBr9.setColumns(10);
 		
+		lblL9perc = new JLabel("0.00%");
+		lblL9perc.setForeground(Color.red);
+		panel_12.add(lblL9perc);
+		
 		panel_13 = new JPanel();
 		FlowLayout flowLayout_9 = (FlowLayout) panel_13.getLayout();
 		flowLayout_9.setAlignment(FlowLayout.RIGHT);
@@ -792,6 +985,10 @@ public class MainFrame extends JFrame {
 		tfBr10 = new JTextField();
 		panel_13.add(tfBr10);
 		tfBr10.setColumns(10);
+		
+		lblL10perc = new JLabel("0.00%");
+		lblL10perc.setForeground(Color.red);
+		panel_13.add(lblL10perc);
 		
 		panel_14 = new JPanel();
 		FlowLayout flowLayout_10 = (FlowLayout) panel_14.getLayout();
@@ -815,6 +1012,10 @@ public class MainFrame extends JFrame {
 		panel_14.add(tfBr11);
 		tfBr11.setColumns(10);
 		
+		lblL11perc = new JLabel("0.00%");
+		lblL11perc.setForeground(Color.red);
+		panel_14.add(lblL11perc);
+		
 		panel_15 = new JPanel();
 		FlowLayout flowLayout_11 = (FlowLayout) panel_15.getLayout();
 		flowLayout_11.setAlignment(FlowLayout.RIGHT);
@@ -836,6 +1037,10 @@ public class MainFrame extends JFrame {
 		tfBr12 = new JTextField();
 		panel_15.add(tfBr12);
 		tfBr12.setColumns(10);
+		
+		lblL12perc = new JLabel("0.00%");
+		lblL12perc.setForeground(Color.red);
+		panel_15.add(lblL12perc);
 		
 		panel_16 = new JPanel();
 		FlowLayout flowLayout_12 = (FlowLayout) panel_16.getLayout();
@@ -859,6 +1064,10 @@ public class MainFrame extends JFrame {
 		panel_16.add(tfBr13);
 		tfBr13.setColumns(10);
 		
+		lblL13perc = new JLabel("0.00%");
+		lblL13perc.setForeground(Color.red);
+		panel_16.add(lblL13perc);
+		
 		panel_17 = new JPanel();
 		FlowLayout flowLayout_13 = (FlowLayout) panel_17.getLayout();
 		flowLayout_13.setAlignment(FlowLayout.RIGHT);
@@ -880,6 +1089,10 @@ public class MainFrame extends JFrame {
 		tfBr14 = new JTextField();
 		panel_17.add(tfBr14);
 		tfBr14.setColumns(10);
+		
+		lblL14perc = new JLabel("0.00%");
+		lblL14perc.setForeground(Color.red);
+		panel_17.add(lblL14perc);
 		
 		panel_18 = new JPanel();
 		FlowLayout flowLayout_14 = (FlowLayout) panel_18.getLayout();
@@ -903,6 +1116,10 @@ public class MainFrame extends JFrame {
 		panel_18.add(tfBr15);
 		tfBr15.setColumns(10);
 		
+		lblL15perc = new JLabel("0.00%");
+		lblL15perc.setForeground(Color.red);
+		panel_18.add(lblL15perc);
+		
 		panel_19 = new JPanel();
 		FlowLayout flowLayout_15 = (FlowLayout) panel_19.getLayout();
 		flowLayout_15.setAlignment(FlowLayout.RIGHT);
@@ -924,6 +1141,10 @@ public class MainFrame extends JFrame {
 		tfBr16 = new JTextField();
 		panel_19.add(tfBr16);
 		tfBr16.setColumns(10);
+		
+		lblL16perc = new JLabel("0.00%");
+		lblL16perc.setForeground(Color.red);
+		panel_19.add(lblL16perc);
 		
 		panel_20 = new JPanel();
 		FlowLayout flowLayout_16 = (FlowLayout) panel_20.getLayout();
@@ -947,6 +1168,10 @@ public class MainFrame extends JFrame {
 		panel_20.add(tfBr17);
 		tfBr17.setColumns(10);
 		
+		lblL17perc = new JLabel("0.00%");
+		lblL17perc.setForeground(Color.red);
+		panel_20.add(lblL17perc);
+		
 		panel_21 = new JPanel();
 		FlowLayout flowLayout_17 = (FlowLayout) panel_21.getLayout();
 		flowLayout_17.setAlignment(FlowLayout.RIGHT);
@@ -968,6 +1193,10 @@ public class MainFrame extends JFrame {
 		tfBr18 = new JTextField();
 		panel_21.add(tfBr18);
 		tfBr18.setColumns(10);
+		
+		lblL18perc = new JLabel("0.00%");
+		lblL18perc.setForeground(Color.red);
+		panel_21.add(lblL18perc);
 		
 		panel_22 = new JPanel();
 		FlowLayout flowLayout_18 = (FlowLayout) panel_22.getLayout();
@@ -991,6 +1220,10 @@ public class MainFrame extends JFrame {
 		tfBr19 = new JTextField();
 		panel_22.add(tfBr19);
 		tfBr19.setColumns(10);
+		
+		lblL19perc = new JLabel("0.00%");
+		lblL19perc.setForeground(Color.red);
+		panel_22.add(lblL19perc);
 		fetchNames();
 		fetchData();
 	}
