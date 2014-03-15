@@ -8,6 +8,7 @@ import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.print.PrinterException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -27,6 +28,7 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JTextArea;
 
 
 public class MainFrame extends JFrame {
@@ -129,6 +131,7 @@ public class MainFrame extends JFrame {
 	JDialog jDialog;
 	JPanel dialogPanel;
 	
+	
 	Database database;
 	private JPanel panel_23;
 	private JButton btnUcitaj;
@@ -177,6 +180,9 @@ public class MainFrame extends JFrame {
 	private JLabel lblL19perc;
 	private JMenuItem mntmIzracunajSve;
 	private JSeparator separator_4;
+	private JTextArea textArea;
+	private JTextArea textAreaFinal;
+	private JMenuItem mntmStampaj;
 
 	/**
 	 * Launch the application.
@@ -507,6 +513,8 @@ public class MainFrame extends JFrame {
 				jDialog = new JDialog();
 				jDialog.setTitle("Rezultati glasanja");
 				
+				
+				
 				JButton button = new JButton("Zatvori");
 				button.addActionListener(new ActionListener() {
 					
@@ -524,13 +532,13 @@ public class MainFrame extends JFrame {
 				dialogPanel.setLayout(new BoxLayout(dialogPanel, BoxLayout.Y_AXIS));
 				dialogPanel.setAlignmentX( Component.CENTER_ALIGNMENT );
 				
+				textAreaFinal = new JTextArea();
+				
 				dialogPanel.add(new JLabel("Rezultati glasanja sa " + String.valueOf(brojac) + " izbornih mesta br: " +izborneListe));
 				dialogPanel.add(new JLabel("Broj glasaca sa pravom glasa: " + String.valueOf(saPravomGlasa)));
 				dialogPanel.add(new JLabel("Broj glasaca izaslo: " + String.valueOf(izaslo) + " - " + String.format("%." + String.valueOf(brojDecimala) + "f", izasloProc) + "%"));
 				dialogPanel.add(new JLabel("Broj nevazecih listica: " + String.valueOf(nevazecih) + " - " + String.format("%." + String.valueOf(brojDecimala) + "f", nevazecihProc) + "%"));
 				dialogPanel.add(new JLabel("Broj vazecih listica: " + String.valueOf(vazecih) + " - " + String.format("%." + String.valueOf(brojDecimala) + "f", vazecihProc) + "%"));
-				
-//				String.format("%." + String.valueOf(brojDecimala) + "f", l1proc)
 				
 				dialogPanel.add(new JLabel("Broj glasova za izbornu listu " + lblIL1.getText() + ": " + String.valueOf(br1) + " - " + String.format("%." + String.valueOf(brojDecimala) + "f", il1) + "%"));
 				dialogPanel.add(new JLabel("Broj glasova za izbornu listu " + lblIL2.getText() + ": " + String.valueOf(br2) + " - " + String.format("%." + String.valueOf(brojDecimala) + "f", il2) + "%"));
@@ -552,9 +560,52 @@ public class MainFrame extends JFrame {
 				dialogPanel.add(new JLabel("Broj glasova za izbornu listu " + lblIL18.getText() + ": " + String.valueOf(br18) + " - " + String.format("%." + String.valueOf(brojDecimala) + "f", il18) + "%"));
 				dialogPanel.add(new JLabel("Broj glasova za izbornu listu " + lblIL19.getText() + ": " + String.valueOf(br19) + " - " + String.format("%." + String.valueOf(brojDecimala) + "f", il19) + "%"));
 				
+				textAreaFinal.setText("Rezultati glasanja sa " + String.valueOf(brojac) + " izbornih mesta br: " +izborneListe + "\n"
+						+ "Broj glasaca sa pravom glasa: " + String.valueOf(saPravomGlasa) + "\n"
+						+ "Broj glasaca izaslo: " + String.valueOf(izaslo) + " - " + String.format("%." + String.valueOf(brojDecimala) + "f", izasloProc) + "%\n"
+						+ "Broj nevazecih listica: " + String.valueOf(nevazecih) + " - " + String.format("%." + String.valueOf(brojDecimala) + "f", nevazecihProc) + "%\n"
+						+ "Broj vazecih listica: " + String.valueOf(vazecih) + " - " + String.format("%." + String.valueOf(brojDecimala) + "f", vazecihProc) + "%\n"
+						+ "Broj glasova za izbornu listu " + lblIL1.getText() + ": " + String.valueOf(br1) + " - " + String.format("%." + String.valueOf(brojDecimala) + "f", il1) + "%\n"
+						+ "Broj glasova za izbornu listu " + lblIL2.getText() + ": " + String.valueOf(br2) + " - " + String.format("%." + String.valueOf(brojDecimala) + "f", il2) + "%\n"
+						+ "Broj glasova za izbornu listu " + lblIL3.getText() + ": " + String.valueOf(br3) + " - " + String.format("%." + String.valueOf(brojDecimala) + "f", il3) + "%\n"
+						+ "Broj glasova za izbornu listu " + lblIL4.getText() + ": " + String.valueOf(br4) + " - " + String.format("%." + String.valueOf(brojDecimala) + "f", il4) + "%\n"
+						+ "Broj glasova za izbornu listu " + lblIL5.getText() + ": " + String.valueOf(br5) + " - " + String.format("%." + String.valueOf(brojDecimala) + "f", il5) + "%\n"
+						+ "Broj glasova za izbornu listu " + lblIL6.getText() + ": " + String.valueOf(br6) + " - " + String.format("%." + String.valueOf(brojDecimala) + "f", il6) + "%\n"
+						+ "Broj glasova za izbornu listu " + lblIL7.getText() + ": " + String.valueOf(br7) + " - " + String.format("%." + String.valueOf(brojDecimala) + "f", il7) + "%\n"
+						+ "Broj glasova za izbornu listu " + lblIL8.getText() + ": " + String.valueOf(br8) + " - " + String.format("%." + String.valueOf(brojDecimala) + "f", il8) + "%\n"
+						+ "Broj glasova za izbornu listu " + lblIL9.getText() + ": " + String.valueOf(br9) + " - " + String.format("%." + String.valueOf(brojDecimala) + "f", il9) + "%\n"
+						+ "Broj glasova za izbornu listu " + lblIL10.getText() + ": " + String.valueOf(br10) + " - " + String.format("%." + String.valueOf(brojDecimala) + "f", il10) + "%\n"
+						+ "Broj glasova za izbornu listu " + lblIL11.getText() + ": " + String.valueOf(br11) + " - " + String.format("%." + String.valueOf(brojDecimala) + "f", il11) + "%\n"
+						+ "Broj glasova za izbornu listu " + lblIL12.getText() + ": " + String.valueOf(br12) + " - " + String.format("%." + String.valueOf(brojDecimala) + "f", il12) + "%\n"
+						+ "Broj glasova za izbornu listu " + lblIL13.getText() + ": " + String.valueOf(br13) + " - " + String.format("%." + String.valueOf(brojDecimala) + "f", il13) + "%\n"
+						+ "Broj glasova za izbornu listu " + lblIL14.getText() + ": " + String.valueOf(br14) + " - " + String.format("%." + String.valueOf(brojDecimala) + "f", il14) + "%\n"
+						+ "Broj glasova za izbornu listu " + lblIL15.getText() + ": " + String.valueOf(br15) + " - " + String.format("%." + String.valueOf(brojDecimala) + "f", il15) + "%\n"
+						+ "Broj glasova za izbornu listu " + lblIL16.getText() + ": " + String.valueOf(br16) + " - " + String.format("%." + String.valueOf(brojDecimala) + "f", il16) + "%\n"
+						+ "Broj glasova za izbornu listu " + lblIL17.getText() + ": " + String.valueOf(br17) + " - " + String.format("%." + String.valueOf(brojDecimala) + "f", il17) + "%\n"
+						+ "Broj glasova za izbornu listu " + lblIL18.getText() + ": " + String.valueOf(br18) + " - " + String.format("%." + String.valueOf(brojDecimala) + "f", il18) + "%\n"
+						+ "Broj glasova za izbornu listu " + lblIL19.getText() + ": " + String.valueOf(br19) + " - " + String.format("%." + String.valueOf(brojDecimala) + "f", il19) + "%\n"
+						);
+				
+				JButton stampajButton = new JButton("Stampaj");
+				stampajButton.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						try {
+							System.out.println(textAreaFinal.getText());
+							textAreaFinal.print();
+						} catch (PrinterException e1) {
+							e1.printStackTrace();
+							JOptionPane.showMessageDialog(null, "Greska prilikom stampanja");
+						}
+						
+					}
+				});
+				
+				dialogPanel.add(stampajButton);
 				dialogPanel.add(button);
 				
-				jDialog.add(dialogPanel);
+				jDialog.getContentPane().add(dialogPanel);
 				
 				jDialog.setVisible(true);
 				
@@ -563,6 +614,16 @@ public class MainFrame extends JFrame {
 			}
 		});
 		mnPodesavanja.add(mntmIzracunajSve);
+		
+		mntmStampaj = new JMenuItem("Stampaj");
+		mntmStampaj.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				stampaj();
+			}
+		});
+		mnPodesavanja.add(mntmStampaj);
 		
 		separator_4 = new JSeparator();
 		mnPodesavanja.add(separator_4);
@@ -800,6 +861,8 @@ public class MainFrame extends JFrame {
 		lblBrojVazecih.setForeground(Color.red);
 		lblBrojVazecih.setAlignmentX(Component.CENTER_ALIGNMENT);
 		procenatPanel.add(lblBrojVazecih);
+		
+		textArea = new JTextArea();
 		
 		izborneListePanel = new JPanel();
 		contentPane.add(izborneListePanel);
@@ -1378,6 +1441,41 @@ public class MainFrame extends JFrame {
 	public void izracunajSve() {
 		ResultSet resultSet = database.selectAllData();
 		// TODO odradi ovo
+	}
+	
+	public void stampaj() {
+		textArea.setText("Podaci za biracko mesto broj " + brojBirackogMestaTF.getText() + "\n"
+				+ "Broj glasaca sa pravom glasa: " + brGlasacaSaPrGlasaTF.getText() + "\n"
+				+ "Broj izaslih glasaca: " + brojIzasloTF.getText() + " - " + lblBrojIzaslo.getText()  + "\n"
+				+ "Broj nevazecih listica: " + brojNevazecihTF.getText() + " - " + lblBrojNevazecih.getText() + "\n"
+				+ "Broj vazecih listica: " + String.valueOf(Integer.valueOf(brojIzasloTF.getText())-Integer.valueOf(brojNevazecihTF.getText())) + " - " + lblBrojVazecih.getText() + "\n"
+				+ lblIL1.getText() + ": " + tfBr1.getText() + " - " + lblL1perc.getText() + "\n"
+				+ lblIL2.getText() + ": " + tfBr2.getText() + " - " + lblL2perc.getText() + "\n"
+				+ lblIL3.getText() + ": " + tfBr3.getText() + " - " + lblL3perc.getText() + "\n"
+				+ lblIL4.getText() + ": " + tfBr4.getText() + " - " + lblL4perc.getText() + "\n"
+				+ lblIL5.getText() + ": " + tfBr5.getText() + " - " + lblL5perc.getText() + "\n"
+				+ lblIL6.getText() + ": " + tfBr6.getText() + " - " + lblL6perc.getText() + "\n"
+				+ lblIL7.getText() + ": " + tfBr7.getText() + " - " + lblL7perc.getText() + "\n"
+				+ lblIL8.getText() + ": " + tfBr8.getText() + " - " + lblL8perc.getText() + "\n"
+				+ lblIL9.getText() + ": " + tfBr9.getText() + " - " + lblL9perc.getText() + "\n"
+				+ lblIL10.getText() + ": " + tfBr10.getText() + " - " + lblL10perc.getText() + "\n"
+				+ lblIL11.getText() + ": " + tfBr11.getText() + " - " + lblL11perc.getText() + "\n"
+				+ lblIL12.getText() + ": " + tfBr12.getText() + " - " + lblL12perc.getText() + "\n"
+				+ lblIL13.getText() + ": " + tfBr13.getText() + " - " + lblL13perc.getText() + "\n"
+				+ lblIL14.getText() + ": " + tfBr14.getText() + " - " + lblL14perc.getText() + "\n"
+				+ lblIL15.getText() + ": " + tfBr15.getText() + " - " + lblL15perc.getText() + "\n"
+				+ lblIL16.getText() + ": " + tfBr16.getText() + " - " + lblL16perc.getText() + "\n"
+				+ lblIL17.getText() + ": " + tfBr17.getText() + " - " + lblL17perc.getText() + "\n"
+				+ lblIL18.getText() + ": " + tfBr18.getText() + " - " + lblL18perc.getText() + "\n"
+				+ lblIL19.getText() + ": " + tfBr19.getText() + " - " + lblL19perc.getText()
+				);
+		try {
+			textArea.print();
+		} catch (PrinterException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Greska prilikom stampanja");
+		}
+		System.out.println(textArea.getText());
 	}
 
 }
